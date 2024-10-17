@@ -16,7 +16,7 @@ const baseColors = [
 const shadeMapping = {
   "50": "900",
   "100": "800",
-  "200": "800",
+  "200": "700",
   "300": "600",
   "400": "500",
   "500": "400",
@@ -42,7 +42,7 @@ const lightTheme = generateThemeObject(colors, shadeMapping);
 const darkTheme = generateThemeObject(colors, shadeMapping, true);
 
 const themes = {
-  ligth: {
+  light: {
     ...lightTheme,
     white: "#ffffff",
   },
@@ -62,12 +62,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [createThemes(themes)],
 };
+
 export default config;
