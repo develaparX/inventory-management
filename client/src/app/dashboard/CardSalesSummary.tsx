@@ -17,8 +17,11 @@ const CardSalesSummary = () => {
 
   const [timeframe, setTimeframe] = useState("weekly");
 
+  //Calculation
   const totalValueSum =
-    salesData.reduce((acc, curr) => acc + curr.totalValue, 0) || 0;
+    salesData.reduce((acc, curr) => {
+      return acc + curr.totalValue;
+    }, 0) || 0;
 
   const averageChangePercentage =
     salesData.reduce((acc, curr, _, array) => {
@@ -42,7 +45,7 @@ const CardSalesSummary = () => {
   }
 
   return (
-    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl flex flex-col justify-between">
+    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl flex flex-col justify-between ">
       {isLoading ? (
         <div className="m-5">Loading...</div>
       ) : (
@@ -52,13 +55,12 @@ const CardSalesSummary = () => {
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
               Sales Summary
             </h2>
-            <hr />
           </div>
 
           {/* BODY */}
           <div>
             {/* BODY HEADER */}
-            <div className="flex justify-between items-center mb-6 px-7 mt-5">
+            <div className="flex justify-between items-center mb-6 px-7">
               <div className="text-lg font-medium">
                 <p className="text-xs text-gray-400">Value</p>
                 <span className="text-2xl font-extrabold">
@@ -85,7 +87,7 @@ const CardSalesSummary = () => {
                 <option value="monthly">Monthly</option>
               </select>
             </div>
-            {/* CHART */}
+            {/* CHARTS */}
             <ResponsiveContainer width="100%" height={350} className="px-7">
               <BarChart
                 data={salesData}
@@ -111,14 +113,6 @@ const CardSalesSummary = () => {
                   formatter={(value: number) => [
                     `$${value.toLocaleString("en")}`,
                   ]}
-                  labelFormatter={(label) => {
-                    const date = new Date(label);
-                    return date.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    });
-                  }}
                 />
                 <Bar
                   dataKey="totalValue"
@@ -129,7 +123,6 @@ const CardSalesSummary = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
-
           {/* FOOTER */}
           <div>
             <hr />
