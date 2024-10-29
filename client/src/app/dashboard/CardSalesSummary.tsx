@@ -55,6 +55,7 @@ const CardSalesSummary = () => {
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
               Sales Summary
             </h2>
+            <hr />
           </div>
 
           {/* BODY */}
@@ -113,6 +114,14 @@ const CardSalesSummary = () => {
                   formatter={(value: number) => [
                     `$${value.toLocaleString("en")}`,
                   ]}
+                  labelFormatter={(label) => {
+                    const date = new Date(label);
+                    return date.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    });
+                  }}
                 />
                 <Bar
                   dataKey="totalValue"
