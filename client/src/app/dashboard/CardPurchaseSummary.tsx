@@ -61,13 +61,13 @@ const CardPurchaseSummary = () => {
               </div>
             </div>
             {/* CHART */}
-            <ResponsiveContainer width="100%" height={350} className="px-7">
+            <ResponsiveContainer width="100%" height={200} className="p-2">
               <AreaChart
                 data={purchaseData}
                 margin={{ top: 0, right: 0, left: -50, bottom: 45 }}
               >
                 <XAxis dataKey="date" tick={false} axisLine={false} />
-                <YAxis tick={false} tickLine={false} axisLine={false} />
+                <YAxis tickLine={false} tick={false} axisLine={false} />
                 <Tooltip
                   formatter={(value: number) => [
                     `$${value.toLocaleString("en")}`,
